@@ -1,0 +1,13 @@
+/* Want glassy calculator with a linear gradient background*/
+/* With numbers traveling in a cosine fashion */
+
+ul {
+    /* This gets rid of the bullet points in front of list */
+    list-style-type: none;
+    /* To get rid of the space where bullets were, use margin and padding */
+    margin:0;
+    padding:0;
+}
+li {
+     float:left;
+}
