@@ -1,13 +1,28 @@
-/* Want glassy calculator with a linear gradient background*/
+/* glassy calculator with a linear gradient background*/
 /* With numbers traveling in a cosine fashion */
 
-ul {
-    /* This gets rid of the bullet points in front of list */
-    list-style-type: none;
-    /* To get rid of the space where bullets were, use margin and padding */
-    margin:0;
-    padding:0;
+.grid-body {
+    display:grid;
+    min-height:470px;
+    margin-top: 100px;
+    grid-template-columns: 65px 65px 65px 65px;
+    grid-template-rows: 80px 80px 80px 80px;
+    padding:10px;
+    margin-left: 30%;
+    
+
 }
-li {
-     float:left;
+.grid-item {
+    text-align: center;
+    font-size:25px;
+    padding:10px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
+   #screen {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+     
+}
+
