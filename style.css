@@ -3,19 +3,19 @@
 
 .grid-body {
     display:grid;
-    min-height:470px;
+    min-height: 480px;
     margin-top: 100px;
     grid-template-columns: 65px 65px 65px 65px;
     grid-template-rows: 80px 80px 80px 80px;
     padding:10px;
-    margin-left: 30%;
+    margin-left: 40%;
     
 
 }
 .grid-item {
     text-align: center;
     font-size:25px;
-    padding:10px;
+    padding:20px;
     border: 1px solid rgba(0, 0, 0, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -23,6 +23,8 @@
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 1;
-     
+}
+#long {
+    padding:10px;
 }
 
