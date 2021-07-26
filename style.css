@@ -3,7 +3,7 @@
 
 .grid-body {
     display:grid;
-    min-height: 480px;
+    min-height: 480px; /* Make the div box taller than the parent class */
     margin-top: 100px;
     grid-template-columns: 65px 65px 65px 65px;
     grid-template-rows: 80px 80px 80px 80px;
@@ -26,5 +26,6 @@
 }
 #long {
     padding:10px;
+    padding-top: 20px;
 }
 
