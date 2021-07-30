@@ -21,9 +21,11 @@ let buttons = document.querySelectorAll('div.grid-item')
 let numlist = [];
 let secondlist = []
 let operator = ['+', '-', '*', '/', '='];
-let first;
-let second;
+let first = [];
+let second = [];
 let opercount = 0;
+let lastoperator;
+let currentoperator;
 
 
 
@@ -41,17 +43,24 @@ for (let i = 0; i < buttons.length; i++) {
             numlist.splice(numlist.length - 1)
             display.innerHTML = numlist.join('')
         } else if (operator.includes(buttons[i].innerHTML) && opercount < 1) {
-            // check if numlist has more than one operator
-            // if true, set operate to latest and return value of previous 
+            
             opercount++;
+            currentoperator = buttons[i].innerHTML;
+            first = numlist.join(''); // make a copy of the current list
+            numlist = [] // clear the current list
             console.log('hi');
-        } else if (opercount >= 1) {
+        } else if (operator.includes(buttons[i].innerHTML) && opercount >= 1) {
             // run operate and return a value to be used
             // turn the first operations into a number 
+            lastoperator = numlist.pop(); // save latest operator 
+            second = numlist.join('')
+
+            console.log(typeof first);
+            console.log(typeof lastoperator); // undefined
             console.log('second use of operator');
             opercount = 0;
-            
-        } 
+
+        }
         else {
             numlist.push(buttons[i].innerHTML)
             display.innerHTML += buttons[i].innerHTML;
