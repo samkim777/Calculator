@@ -45,9 +45,11 @@ for (let i = 0; i < buttons.length; i++) {
             // if true, set operate to latest and return value of previous 
             opercount++;
             console.log('hi');
-        } else if (operate.includes(buttons[i].innerHTML) && opercount > 1) {
+        } else if (opercount >= 1) {
             // run operate and return a value to be used
             // turn the first operations into a number 
+            console.log('second use of operator');
+            opercount = 0;
             
         } 
         else {
