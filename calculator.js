@@ -52,16 +52,17 @@ for (let i = 0; i < buttons.length; i++) {
         } else if (operator.includes(buttons[i].innerHTML) && opercount >= 1) {
             // run operate and return a value to be used
             // turn the first operations into a number 
-            lastoperator = numlist.pop(); // save latest operator 
+            numlist.push(buttons[i].innerHTML) // add current operator to list
+            lastoperator = numlist.pop();
+            console.log(numlist);
             second = numlist.join('')
+            console.log(lastoperator);
 
-            console.log(typeof first);
-            console.log(typeof lastoperator); // undefined
-            console.log('second use of operator');
             opercount = 0;
 
         }
         else {
+            
             numlist.push(buttons[i].innerHTML)
             display.innerHTML += buttons[i].innerHTML;
         }
