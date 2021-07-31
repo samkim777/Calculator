@@ -1,16 +1,20 @@
 
 
 function operate(firstNum, secondNum, operator) {
-    if (operator === '+') {
-        return parseInt(firstNum) + parseInt(secondNum);
-    } else if (operator === '-') {
-        return firstNum - secondNum
-    } else if (operator === '*') {
-        return firstNum * secondNum
-    } else if (operator === '/') {
-        if (secondNum !== 0) {
-            return firstNum / secondNum
-        } else return 'Cannot divide by a 0!';
+    if (firstNum === undefined || secondNum === undefined) {
+
+    } else {
+        if (operator === '+') {
+            return parseInt(firstNum) + parseInt(secondNum);
+        } else if (operator === '-') {
+            return parseInt(firstNum) - parseInt(secondNum)
+        } else if (operator === '*') {
+            return firstNum * secondNum
+        } else if (operator === '/') {
+            if (secondNum !== 0) {
+                return firstNum / secondNum
+            } else return 'Cannot divide by a 0!';
+        }
     }
 
 }
@@ -25,8 +29,9 @@ let first = [];
 let second = [];
 let opercount = 0;
 let lastoperator;
-let currentoperator;
-
+let fields;
+let count;
+let pressed;
 
 
 
@@ -42,27 +47,21 @@ for (let i = 0; i < buttons.length; i++) {
             // get rid of last number
             numlist.splice(numlist.length - 1)
             display.innerHTML = numlist.join('')
-        } else if (operator.includes(buttons[i].innerHTML) && opercount < 1) {
+        } else if (operator.includes(buttons[i].innerHTML)) {
+            pressed = buttons[i].innerHTML
+            count++;
+            numlist.push(buttons[i].innerHTML)
+            // need to store previous calculated value for current use
             
-            opercount++;
-            currentoperator = buttons[i].innerHTML;
-            first = numlist.join(''); // make a copy of the current list
-            numlist = [] // clear the current list
-            console.log('hi');
-        } else if (operator.includes(buttons[i].innerHTML) && opercount >= 1) {
-            // run operate and return a value to be used
-            // turn the first operations into a number 
-            numlist.push(buttons[i].innerHTML) // add current operator to list
-            lastoperator = numlist.pop();
-            console.log(numlist);
-            second = numlist.join('')
-            console.log(lastoperator);
-
-            opercount = 0;
-
         }
         else {
-            
+            if (count > 1) {
+                lastoperator = numlist.pop() // save latest operator
+                fields = numlist.split(pressed) // split numlist by operator
+                console.log(operate (fields[0],fields[1],pressed));
+                
+
+            }
             numlist.push(buttons[i].innerHTML)
             display.innerHTML += buttons[i].innerHTML;
         }
