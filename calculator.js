@@ -25,13 +25,13 @@ let buttons = document.querySelectorAll('div.grid-item')
 let numlist = [];
 let secondlist = []
 let operator = ['+', '-', '*', '/', '='];
-let first = [];
-let second = [];
+let first = '';
+let second = '';
 let opercount = 0;
-let lastoperator;
-let fields;
-let count;
-let pressed;
+let calculate = false;
+let curoperator;
+let results;
+
 
 
 
@@ -47,24 +47,33 @@ for (let i = 0; i < buttons.length; i++) {
             // get rid of last number
             numlist.splice(numlist.length - 1)
             display.innerHTML = numlist.join('')
-        } else if (operator.includes(buttons[i].innerHTML)) {
-            pressed = buttons[i].innerHTML
-            count++;
-            numlist.push(buttons[i].innerHTML)
-            // need to store previous calculated value for current use
-            
         }
-        else {
-            if (count > 1) {
-                lastoperator = numlist.pop() // save latest operator
-                fields = numlist.split(pressed) // split numlist by operator
-                console.log(operate (fields[0],fields[1],pressed));
-                
+        else if (operator.includes(buttons[i].innerHTML) && !calculate) {
+            calculate = true
+            curoperator = buttons[i].innerHTML
 
+
+        }
+        else if (!calculate) {
+            display.innerHTML += buttons[i].innerHTML
+            if (results === undefined) {
+                first += buttons[i].innerHTML
             }
-            numlist.push(buttons[i].innerHTML)
-            display.innerHTML += buttons[i].innerHTML;
+        } else {
+            second += buttons[i].innerHTML // second is initialized as undefined
+            console.log(typeof parseInt(second));
+            console.log(operate(parseInt(first), parseInt(second), curoperator));
+            results = operate(parseInt(first), parseInt(second), curoperator)
+            if (operator.includes(buttons[i].innerHTML)) {
+                first += results // save latest result
+                curoperator = buttons[i].innerHTML
+                calculate = false
+                console.log(first)
+            }
+            // works the first time but not continous
         }
     })
 }
-
+// 3 * 2 display 6
+// 3 * 21 display 63
+// 
