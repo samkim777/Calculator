@@ -35,24 +35,33 @@ let savesolution = ''
 // Display the corresponding number / operations
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function () {
+        if (buttons[i].innerHTML === 'AC') {
+            firstnumber = ''
+            secondnumber = ''
+            curoperator = ''
+            clicked = 0
+        }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 0) {
             if (savesolution === '') {
                 firstnumber += buttons[i].innerHTML
+                display.innerHTML = firstnumber
             } else {
                 firstnumber = solution
+                display.innerHTML = firstnumber
             }
         }
         if (operator.includes(buttons[i].innerHTML)) {
             clicked++;
             curoperator = buttons[i].innerHTML
             console.log(curoperator);
+            display.innerHTML = ''
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1) {
             secondnumber += buttons[i].innerHTML
             console.log(secondnumber);
             operate(firstnumber, secondnumber, curoperator)
             console.log(solution);
-
+            display.innerHTML = secondnumber
         }
         if (operator.includes(buttons[i].innerHTML) && clicked === 2) {
             savesolution = solution
@@ -61,16 +70,23 @@ for (let i = 0; i < buttons.length; i++) {
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 2) {
             firstnumber = solution
-            secondnumber+= buttons[i].innerHTML
-            operate(firstnumber,secondnumber,curoperator)
+            secondnumber += buttons[i].innerHTML
+            operate(firstnumber, secondnumber, curoperator)
             console.log(firstnumber);
             secondnumber = ''
             console.log(solution);
             clicked = 0
         }
         else {
-            display.innerHTML += buttons[i].innerHTML
+            if (!operator.includes(buttons[i].innerHTML)) {
+                display.innerHTML = buttons[i].innerHTML
+            }
         }
+        // todo: implement '=' 
+        //     : Implement other buttons
+        //     : implement decimals and percentages
+        
+        //     : work on design
     })
 }
 
