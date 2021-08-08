@@ -85,15 +85,29 @@ for (let i = 0; i < buttons.length; i++) {
             clicked = 0
             console.log(clicked);
         }
-        // '=' sign
-        if (buttons[i].innerHTML === '=') {
+       
+        switch (buttons[i].innerHTML) {
+            case '=': 
+            
+            break;
 
+            case 'DEL':
+            break;
+
+            case '%':
+            break;
+
+            case '.':
+            break;
+
+            case '00':
+            break;
         }
-        // 
-        else {
-            if (!operator.includes(buttons[i].innerHTML)) {
-                display.innerHTML = buttons[i].innerHTML
-            }
+
+
+        if (!operator.includes(buttons[i].innerHTML)) {
+            display.innerHTML = buttons[i].innerHTML
+
         }
         // todo: implement '=' 
         //     : Implement other buttons
