@@ -41,13 +41,18 @@ for (let i = 0; i < buttons.length; i++) {
             curoperator = ''
             clicked = 0
         }
-        if (!operator.includes(buttons[i].innerHTML) && clicked === 0) {
+        if (clicked === 0) {
             if (savesolution === '') {
                 firstnumber += buttons[i].innerHTML
+                console.log(firstnumber);
                 display.innerHTML = firstnumber
             } else {
                 firstnumber = solution
+                console.log(firstnumber);
                 display.innerHTML = firstnumber
+                // We never access this section why?
+                // actually we never access this whole part besides the very first time
+                // there must be an issue resetting clicked 
             }
         }
         if (operator.includes(buttons[i].innerHTML)) {
@@ -59,12 +64,14 @@ for (let i = 0; i < buttons.length; i++) {
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1) {
             secondnumber += buttons[i].innerHTML
             console.log(secondnumber);
+            console.log(firstnumber); // incorrect assigning of first number
             operate(firstnumber, secondnumber, curoperator)
             console.log(solution);
             display.innerHTML = secondnumber
         }
         if (operator.includes(buttons[i].innerHTML) && clicked === 2) {
             savesolution = solution
+            console.log(savesolution);
             secondnumber = ''
             console.log(solution);
         }
@@ -76,6 +83,7 @@ for (let i = 0; i < buttons.length; i++) {
             secondnumber = ''
             console.log(solution);
             clicked = 0
+            console.log(clicked);
         }
         else {
             if (!operator.includes(buttons[i].innerHTML)) {
