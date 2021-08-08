@@ -25,7 +25,7 @@ let firstnumber = '';
 let secondnumber = '';
 let opercount = 0;
 let clicked = 0;
-let curoperator;
+let curoperator = '';
 let solution = ''
 let savesolution = ''
 
@@ -43,16 +43,16 @@ for (let i = 0; i < buttons.length; i++) {
         }
         if (clicked === 0) {
             if (savesolution === '') {
-                firstnumber += buttons[i].innerHTML
+                if (!operator.includes(buttons[i].innerHTML)) {
+                    firstnumber += buttons[i].innerHTML
+                }
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
             } else {
                 firstnumber = solution
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
-                // We never access this section why?
-                // actually we never access this whole part besides the very first time
-                // there must be an issue resetting clicked 
+
             }
         }
         if (operator.includes(buttons[i].innerHTML)) {
@@ -85,6 +85,11 @@ for (let i = 0; i < buttons.length; i++) {
             clicked = 0
             console.log(clicked);
         }
+        // '=' sign
+        if (buttons[i].innerHTML === '=') {
+
+        }
+        // 
         else {
             if (!operator.includes(buttons[i].innerHTML)) {
                 display.innerHTML = buttons[i].innerHTML
@@ -92,8 +97,9 @@ for (let i = 0; i < buttons.length; i++) {
         }
         // todo: implement '=' 
         //     : Implement other buttons
-        //     : implement decimals and percentages
-        
+        //     : Implement decimals and percentages
+        //     : Implement displaying of numbers
+
         //     : work on design
     })
 }
