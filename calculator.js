@@ -19,6 +19,7 @@ function operate(firstNum, secondNum, operator) {
 let display = document.querySelector('#screen')
 let buttons = document.querySelectorAll('div.grid-item')
 let operator = ['+', '-', '*', '/', '='];
+let specialoperators = ['%', 'AC', 'DEL'];
 let firstnumber = '';
 let secondnumber = '';
 let clicked = 0;
@@ -26,6 +27,8 @@ let curoperator = '';
 let solution = ''
 let savesolution = ''
 let currentnumber = '';
+let percent = '';
+
 
 
 
@@ -42,8 +45,11 @@ for (let i = 0; i < buttons.length; i++) {
         if (clicked === 0) {
             if (savesolution === '') {
                 if (!operator.includes(buttons[i].innerHTML)) {
-                    firstnumber += buttons[i].innerHTML
+                    if (!specialoperators.includes(buttons[i].innerHTML)) {
+                        firstnumber += buttons[i].innerHTML
+                    }
                     currentnumber = firstnumber // keep track of which number we're on
+                    
                 }
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
@@ -85,32 +91,37 @@ for (let i = 0; i < buttons.length; i++) {
             console.log(solution);
             clicked = 0
         }
-       
-        switch (buttons[i].innerHTML) {
-            case '=': 
 
-            break;
+        switch (buttons[i].innerHTML) {
+            case '=':
+
+                break;
 
             case 'DEL':
                 // might need to save first or second number to erase from
-            break;
+                break;
 
             case '%':
-            break;
+                percent = currentnumber/100
+                console.log(percent);
+                if (clicked === 0) {
+                    firstnumber = percent;
+                } else {
+                    secondnumber = percent;
+                }
+                break;
 
             case '.':
-                
                 if (currentnumber === '') {
                     currentnumber = '0.'
                 } else {
                     currentnumber += '.'
                 }
-                
-            
-            break;
+                break;
 
             case '00':
-            break;
+                currentnumber * 100;
+                break;
         }
 
 
