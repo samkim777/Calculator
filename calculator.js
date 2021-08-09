@@ -2,9 +2,9 @@
 
 function operate(firstNum, secondNum, operator) {
     if (operator === '+') {
-        solution = parseInt(firstNum) + parseInt(secondNum);
+        solution = Number(firstNum) + Number(secondNum);
     } else if (operator === '-') {
-        solution = parseInt(firstNum) - parseInt(secondNum)
+        solution = Number(firstNum) - Number(secondNum)
     } else if (operator === '*') {
         solution = firstNum * secondNum
     } else if (operator === '/') {
@@ -18,16 +18,14 @@ function operate(firstNum, secondNum, operator) {
 
 let display = document.querySelector('#screen')
 let buttons = document.querySelectorAll('div.grid-item')
-let numlist = [];
-let secondlist = []
 let operator = ['+', '-', '*', '/', '='];
 let firstnumber = '';
 let secondnumber = '';
-let opercount = 0;
 let clicked = 0;
 let curoperator = '';
 let solution = ''
 let savesolution = ''
+let currentnumber = '';
 
 
 
@@ -45,11 +43,13 @@ for (let i = 0; i < buttons.length; i++) {
             if (savesolution === '') {
                 if (!operator.includes(buttons[i].innerHTML)) {
                     firstnumber += buttons[i].innerHTML
+                    currentnumber = firstnumber // keep track of which number we're on
                 }
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
             } else {
                 firstnumber = solution
+                currentnumber = firstnumber
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
 
@@ -63,6 +63,7 @@ for (let i = 0; i < buttons.length; i++) {
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1) {
             secondnumber += buttons[i].innerHTML
+            currentnumber = secondnumber
             console.log(secondnumber);
             console.log(firstnumber); // incorrect assigning of first number
             operate(firstnumber, secondnumber, curoperator)
@@ -83,21 +84,29 @@ for (let i = 0; i < buttons.length; i++) {
             secondnumber = ''
             console.log(solution);
             clicked = 0
-            console.log(clicked);
         }
        
         switch (buttons[i].innerHTML) {
             case '=': 
-            
+
             break;
 
             case 'DEL':
+                // might need to save first or second number to erase from
             break;
 
             case '%':
             break;
 
             case '.':
+                
+                if (currentnumber === '') {
+                    currentnumber = '0.'
+                } else {
+                    currentnumber += '.'
+                }
+                
+            
             break;
 
             case '00':
