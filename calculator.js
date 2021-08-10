@@ -99,6 +99,18 @@ for (let i = 0; i < buttons.length; i++) {
 
             case 'DEL':
                 // might need to save first or second number to erase from
+                if (clicked === 0) {
+                    // delete first number before the first operator
+                    firstnumber = firstnumber.replace(firstnumber.substr(firstnumber.length - 1), '') 
+                    console.log(firstnumber)
+                } else if (clicked === 1 && secondnumber === '') {
+                    // with one operator and second number yet typed, delete the operator
+                    curoperator.substr(0)
+                    clicked-- // indicate that the operator is now gone
+                } else {
+                    // else delete second number
+                    secondnumber = secondnumber.substr(secondnumber.length - 1)
+                }
                 break;
 
             case '%':
