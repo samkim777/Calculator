@@ -41,8 +41,9 @@ for (let i = 0; i < buttons.length; i++) {
             secondnumber = ''
             curoperator = ''
             clicked = 0
+            display.innerHTML = ''
         }
-        if (clicked === 0) {
+        if (clicked === 0 || buttons[i].innerHTML === '=') {
             if (savesolution === '') {
                 if (!operator.includes(buttons[i].innerHTML)) {
                     if (!specialoperators.includes(buttons[i].innerHTML)) {
@@ -84,7 +85,7 @@ for (let i = 0; i < buttons.length; i++) {
             secondnumber = ''
             console.log(solution);
         }
-        if (!operator.includes(buttons[i].innerHTML) && clicked === 2) {
+        if (!operator.includes(buttons[i].innerHTML) && clicked === 2 && !specialoperators.includes(buttons[i].innerHTML)) {
             firstnumber = solution
             if (!specialoperators.includes(buttons[i].innerHTML)) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
@@ -97,8 +98,10 @@ for (let i = 0; i < buttons.length; i++) {
         }
 
         switch (buttons[i].innerHTML) {
-            case '=':
-
+            case '=': 
+            // Last functionality debug
+                display.innerHTML = solution
+                clicked++;
                 break;
 
             case 'DEL':
@@ -142,7 +145,7 @@ for (let i = 0; i < buttons.length; i++) {
         }
 
 
-        if (!operator.includes(buttons[i].innerHTML)) {
+        if (!operator.includes(buttons[i].innerHTML)  && !specialoperators.includes(buttons[i].innerHTML)) {
             display.innerHTML = buttons[i].innerHTML
 
         }
