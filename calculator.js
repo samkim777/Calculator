@@ -49,7 +49,7 @@ for (let i = 0; i < buttons.length; i++) {
                         firstnumber += buttons[i].innerHTML
                     }
                     currentnumber = firstnumber // keep track of which number we're on
-                    
+
                 }
                 console.log(firstnumber);
                 display.innerHTML = firstnumber
@@ -67,8 +67,10 @@ for (let i = 0; i < buttons.length; i++) {
             console.log(curoperator);
             display.innerHTML = ''
         }
-        if (!operator.includes(buttons[i].innerHTML) && clicked === 1) {
-            secondnumber += buttons[i].innerHTML
+        if (!operator.includes(buttons[i].innerHTML) && clicked === 1 && !specialoperators.includes(buttons[i].innerHTML)) {
+            if (!specialoperators.includes(buttons[i].innerHTML)) {
+                secondnumber += buttons[i].innerHTML // check against adding operators to number string
+            } 
             currentnumber = secondnumber
             console.log(secondnumber);
             console.log(firstnumber); // incorrect assigning of first number
@@ -84,7 +86,9 @@ for (let i = 0; i < buttons.length; i++) {
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 2) {
             firstnumber = solution
-            secondnumber += buttons[i].innerHTML
+            if (!specialoperators.includes(buttons[i].innerHTML)) {
+                secondnumber += buttons[i].innerHTML // check against adding operators to number string
+            } 
             operate(firstnumber, secondnumber, curoperator)
             console.log(firstnumber);
             secondnumber = ''
@@ -101,20 +105,21 @@ for (let i = 0; i < buttons.length; i++) {
                 // might need to save first or second number to erase from
                 if (clicked === 0) {
                     // delete first number before the first operator
-                    firstnumber = firstnumber.replace(firstnumber.substr(firstnumber.length - 1), '') 
+                    firstnumber = firstnumber.replace(firstnumber.substr(firstnumber.length - 1), '')
                     console.log(firstnumber)
                 } else if (clicked === 1 && secondnumber === '') {
                     // with one operator and second number yet typed, delete the operator
-                    curoperator.substr(0)
+                    curoperator = ''
                     clicked-- // indicate that the operator is now gone
                 } else {
                     // else delete second number
-                    secondnumber = secondnumber.substr(secondnumber.length - 1)
+                    secondnumber = secondnumber.replace(secondnumber.substr(secondnumber.length - 1), '')
+                    console.log(secondnumber)
                 }
                 break;
 
             case '%':
-                percent = currentnumber/100
+                percent = currentnumber / 100
                 console.log(percent);
                 if (clicked === 0) {
                     firstnumber = percent;
