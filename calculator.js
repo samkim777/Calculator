@@ -18,8 +18,8 @@ function operate(firstNum, secondNum, operator) {
 
 let display = document.querySelector('#screen')
 let buttons = document.querySelectorAll('div.grid-item')
-let operator = ['+', '-', '*', '/', '='];
-let specialoperators = ['%', 'AC', 'DEL'];
+let operator = ['+', '-', '*', '/'];
+let specialoperators = ['%', 'AC', 'DEL', '='];
 let firstnumber = '';
 let secondnumber = '';
 let clicked = 0;
@@ -100,8 +100,12 @@ for (let i = 0; i < buttons.length; i++) {
         switch (buttons[i].innerHTML) {
             case '=': 
             // Last functionality debug
-                display.innerHTML = solution
-                clicked++;
+                // requires second number to not be empty
+                if (secondnumber !== '') {
+                    display.innerHTML = solution
+                    console.log(solution);
+                    
+                }
                 break;
 
             case 'DEL':
