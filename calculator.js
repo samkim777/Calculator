@@ -53,12 +53,12 @@ for (let i = 0; i < buttons.length; i++) {
 
                 }
                 console.log(firstnumber);
-                display.innerHTML = firstnumber
+
             } else {
                 firstnumber = solution
                 currentnumber = firstnumber
                 console.log(firstnumber);
-                display.innerHTML = firstnumber
+
 
             }
         }
@@ -71,13 +71,13 @@ for (let i = 0; i < buttons.length; i++) {
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1 && !specialoperators.includes(buttons[i].innerHTML)) {
             if (!specialoperators.includes(buttons[i].innerHTML)) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
-            } 
+            }
             currentnumber = secondnumber
             console.log(secondnumber);
             console.log(firstnumber); // incorrect assigning of first number
             operate(firstnumber, secondnumber, curoperator)
             console.log(solution);
-            display.innerHTML = secondnumber
+
         }
         if (operator.includes(buttons[i].innerHTML) && clicked === 2) {
             savesolution = solution
@@ -89,7 +89,7 @@ for (let i = 0; i < buttons.length; i++) {
             firstnumber = solution
             if (!specialoperators.includes(buttons[i].innerHTML)) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
-            } 
+            }
             operate(firstnumber, secondnumber, curoperator)
             console.log(firstnumber);
             secondnumber = ''
@@ -98,14 +98,10 @@ for (let i = 0; i < buttons.length; i++) {
         }
 
         switch (buttons[i].innerHTML) {
-            case '=': 
-            // Last functionality debug
-                // requires second number to not be empty
-                if (secondnumber !== '') {
-                    display.innerHTML = solution
-                    console.log(solution);
-                    
-                }
+            case '=':
+                display.innerHTML = solution
+                console.log(solution);
+
                 break;
 
             case 'DEL':
@@ -149,8 +145,8 @@ for (let i = 0; i < buttons.length; i++) {
         }
 
 
-        if (!operator.includes(buttons[i].innerHTML)  && !specialoperators.includes(buttons[i].innerHTML)) {
-            display.innerHTML = buttons[i].innerHTML
+        if (!operator.includes(buttons[i].innerHTML) && !specialoperators.includes(buttons[i].innerHTML)) {
+            display.innerHTML += buttons[i].innerHTML
 
         }
         // todo: implement '=' 
