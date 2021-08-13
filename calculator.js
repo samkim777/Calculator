@@ -10,7 +10,7 @@ function operate(firstNum, secondNum, operator) {
     } else if (operator === '/') {
         if (secondNum !== 0) {
             solution = firstNum / secondNum
-        } else return 'Cannot divide by a 0!';
+        } 
     }
 
 }
@@ -42,6 +42,7 @@ for (let i = 0; i < buttons.length; i++) {
             curoperator = ''
             clicked = 0
             display.innerHTML = ''
+            solution = ''
         }
         if (clicked === 0 || buttons[i].innerHTML === '=') {
             if (savesolution === '') {
@@ -149,12 +150,6 @@ for (let i = 0; i < buttons.length; i++) {
             display.innerHTML += buttons[i].innerHTML
 
         }
-        // todo: implement '=' 
-        //     : Implement other buttons
-        //     : Implement decimals and percentages
-        //     : Implement displaying of numbers
-
-        //     : work on design
     })
 }
 

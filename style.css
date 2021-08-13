@@ -3,12 +3,13 @@
 
 .grid-body {
     display:grid;
-    min-height: 480px; /* Make the div box taller than the parent class */
+    min-height: 100%; /* Make the div box taller than the parent class */
     margin-top: 100px;
     grid-template-columns: 65px 65px 65px 65px;
     grid-template-rows: 80px 80px 80px 80px;
     padding:10px;
     margin-left: 40%;
+    
     
 
 }
@@ -16,8 +17,8 @@
     text-align: center;
     font-size:25px;
     padding:20px;
-    border: 1px solid rgba(0, 0, 0, 0.8);
     background-color: rgba(255, 255, 255, 0.8);
+    background:rgba(255, 255, 255, 0.151);
 }
  #screen {
     grid-column-start: 1;
@@ -27,5 +28,16 @@
 #long {
     padding:10px;
     padding-top: 20px;
+}
+
+.background {
+    overflow-y: hidden;
+    min-height: 100%;
+    margin-bottom: 0%;
+    background-image: linear-gradient( #DC143C,#0000FF);
+    
+}
+.background-adjust {
+    margin-bottom: 15.7%;
 }
 
