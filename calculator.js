@@ -127,8 +127,10 @@ for (let i = 0; i < buttons.length; i++) {
                 console.log(percent);
                 if (clicked === 0) {
                     firstnumber = percent;
+                    display.innerHTML = firstnumber
                 } else {
                     secondnumber = percent;
+                    display.innerHTML = secondnumber
                 }
                 break;
 
