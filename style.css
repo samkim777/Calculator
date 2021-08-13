@@ -34,7 +34,7 @@
     overflow-y: hidden;
     min-height: 100%;
     margin-bottom: 0%;
-    background-image: linear-gradient( #DC143C,#0000FF);
+    background-image: linear-gradient( to right, #feac5e ,#c779d0,#89fffd);
     
 }
 .background-adjust {
