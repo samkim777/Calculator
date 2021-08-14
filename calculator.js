@@ -28,6 +28,7 @@ let solution = ''
 let savesolution = ''
 let currentnumber = '';
 let percent = '';
+let reset;
 
 
 
@@ -43,6 +44,7 @@ for (let i = 0; i < buttons.length; i++) {
             clicked = 0
             display.innerHTML = ''
             solution = ''
+            savesolution = ''
         }
         if (clicked === 0 || buttons[i].innerHTML === '=') {
             if (savesolution === '') {
@@ -62,6 +64,7 @@ for (let i = 0; i < buttons.length; i++) {
 
 
             }
+            secondnumber = ''
         }
         if (operator.includes(buttons[i].innerHTML)) {
             clicked++;
@@ -69,6 +72,7 @@ for (let i = 0; i < buttons.length; i++) {
             console.log(curoperator);
             display.innerHTML = ''
         }
+    
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1 && !specialoperators.includes(buttons[i].innerHTML)) {
             if (!specialoperators.includes(buttons[i].innerHTML)) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
@@ -85,18 +89,19 @@ for (let i = 0; i < buttons.length; i++) {
             console.log(savesolution);
             secondnumber = ''
             console.log(solution);
+            
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 2 && !specialoperators.includes(buttons[i].innerHTML)) {
             firstnumber = solution
-            if (!specialoperators.includes(buttons[i].innerHTML)) {
-                secondnumber += buttons[i].innerHTML // check against adding operators to number string
-            }
-            operate(firstnumber, secondnumber, curoperator)
+            secondnumber += buttons[i].innerHTML // check against adding operators to number string
             console.log(firstnumber);
-            secondnumber = ''
+            console.log(secondnumber);
+            // secondnumber = ''
+            console.log(buttons[i].innerHTML);
             console.log(solution);
-            clicked = 0
         }
+       
+       
 
         switch (buttons[i].innerHTML) {
             case '=':
@@ -135,11 +140,7 @@ for (let i = 0; i < buttons.length; i++) {
                 break;
 
             case '.':
-                if (currentnumber === '') {
-                    currentnumber = '0.'
-                } else {
-                    currentnumber += '.'
-                }
+                currentnumber+='.'
                 break;
 
             case '00':
