@@ -1,5 +1,3 @@
-
-
 function operate(firstNum, secondNum, operator) {
     if (operator === '+') {
         solution = Number(firstNum) + Number(secondNum);
@@ -28,7 +26,6 @@ let solution = ''
 let savesolution = ''
 let currentnumber = '';
 let percent = '';
-let reset;
 
 
 
@@ -53,18 +50,17 @@ for (let i = 0; i < buttons.length; i++) {
                         firstnumber += buttons[i].innerHTML
                     }
                     currentnumber = firstnumber // keep track of which number we're on
-
+                    console.log(firstnumber);
                 }
-                console.log(firstnumber);
+                
 
             } else {
                 firstnumber = solution
                 currentnumber = firstnumber
-                console.log(firstnumber);
+                
 
 
             }
-            secondnumber = ''
         }
         if (operator.includes(buttons[i].innerHTML)) {
             clicked++;
@@ -72,7 +68,6 @@ for (let i = 0; i < buttons.length; i++) {
             console.log(curoperator);
             display.innerHTML = ''
         }
-    
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1 && !specialoperators.includes(buttons[i].innerHTML)) {
             if (!specialoperators.includes(buttons[i].innerHTML)) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
@@ -86,28 +81,37 @@ for (let i = 0; i < buttons.length; i++) {
         }
         if (operator.includes(buttons[i].innerHTML) && clicked === 2) {
             savesolution = solution
-            console.log(savesolution);
             secondnumber = ''
             console.log(solution);
-            
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 2 && !specialoperators.includes(buttons[i].innerHTML)) {
             firstnumber = solution
-            secondnumber += buttons[i].innerHTML // check against adding operators to number string
+            clicked--;
+            if (!specialoperators.includes(buttons[i].innerHTML)) {
+                secondnumber += buttons[i].innerHTML // check against adding operators to number string
+            }
+            currentnumber = secondnumber
+            operate(firstnumber, secondnumber, curoperator)
+            
+            
+            // want to keep chain of numbers until we want another operator
             console.log(firstnumber);
             console.log(secondnumber);
-            // secondnumber = ''
-            console.log(buttons[i].innerHTML);
             console.log(solution);
+            
         }
-       
-       
+        if (clicked === 3 && !specialoperators.includes(buttons[i].innerHTML)) {
+            operate(firstnumber, secondnumber, curoperator)
+            console.log(firstnumber);
+            console.log(secondnumber);
+            clicked = 0 
+            secondnumber = ''
+        }
 
         switch (buttons[i].innerHTML) {
             case '=':
                 display.innerHTML = solution
                 console.log(solution);
-
                 break;
 
             case 'DEL':
@@ -140,7 +144,7 @@ for (let i = 0; i < buttons.length; i++) {
                 break;
 
             case '.':
-                currentnumber+='.'
+                currentnumber += '.'
                 break;
 
             case '00':
@@ -155,4 +159,3 @@ for (let i = 0; i < buttons.length; i++) {
         }
     })
 }
-
