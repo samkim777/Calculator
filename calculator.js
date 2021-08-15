@@ -8,7 +8,7 @@ function operate(firstNum, secondNum, operator) {
     } else if (operator === '/') {
         if (secondNum !== 0) {
             solution = firstNum / secondNum
-        } 
+        }
     }
 
 }
@@ -51,12 +51,12 @@ for (let i = 0; i < buttons.length; i++) {
                     }
                     currentnumber = firstnumber // keep track of which number we're on
                 }
-                
+
 
             } else {
                 firstnumber = solution
                 currentnumber = firstnumber
-                
+
 
 
             }
@@ -87,15 +87,16 @@ for (let i = 0; i < buttons.length; i++) {
             }
             currentnumber = secondnumber
             operate(firstnumber, secondnumber, curoperator)
-            
-            
+
+
             // want to keep chain of numbers until we want another operator
-            
+
         }
         if (clicked === 3 && !specialoperators.includes(buttons[i].innerHTML)) {
             operate(firstnumber, secondnumber, curoperator)
-            clicked = 0 
+            clicked = 0
             secondnumber = ''
+            currentnumber = firstnumber
         }
 
         switch (buttons[i].innerHTML) {
@@ -105,36 +106,39 @@ for (let i = 0; i < buttons.length; i++) {
 
             case 'DEL':
                 // might need to save first or second number to erase from
-                if (clicked === 0) {
-                    // delete first number before the first operator
-                    firstnumber = firstnumber.replace(firstnumber.substr(firstnumber.length - 1), '')
-                } else if (clicked === 1 && secondnumber === '') {
-                    // with one operator and second number yet typed, delete the operator
-                    curoperator = ''
-                    clicked-- // indicate that the operator is now gone
-                } else {
-                    // else delete second number
-                    secondnumber = secondnumber.replace(secondnumber.substr(secondnumber.length - 1), '')
+                if (clicked === 0 || clicked === 2) {
+                    firstnumber = firstnumber.slice(0, -1)
+                    console.log(firstnumber);
+                    display.innerHTML = firstnumber
+                } else if (clicked === 1 || clicked === 3) {
+                    if (secondnumber !== '') {
+                        solution = solution.toString().slice(0,-1)
+                        display.innerHTML = solution
+                    }
                 }
+                // currentnumber = currentnumber.slice(0,-1)
+                // console.log(currentnumber);
+                // display.innerHTML = currentnumber
                 break;
 
             case '%':
-                percent = currentnumber / 100
-                if (clicked === 0) {
+                if (clicked === 0 || clicked === 2) {
+                    percent = firstnumber / 100
                     firstnumber = percent;
                     display.innerHTML = firstnumber
                 } else {
-                    secondnumber = percent;
-                    display.innerHTML = secondnumber
+                    percent = solution / 100
+                    solution = percent;
+                    display.innerHTML = solution
                 }
                 break;
 
             case '.':
-                currentnumber += '.'
+                solution += '.'
                 break;
 
             case '00':
-                currentnumber * 100;
+                solution * 100;
                 break;
         }
 
