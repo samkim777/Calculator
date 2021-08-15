@@ -50,7 +50,6 @@ for (let i = 0; i < buttons.length; i++) {
                         firstnumber += buttons[i].innerHTML
                     }
                     currentnumber = firstnumber // keep track of which number we're on
-                    console.log(firstnumber);
                 }
                 
 
@@ -65,7 +64,6 @@ for (let i = 0; i < buttons.length; i++) {
         if (operator.includes(buttons[i].innerHTML)) {
             clicked++;
             curoperator = buttons[i].innerHTML
-            console.log(curoperator);
             display.innerHTML = ''
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 1 && !specialoperators.includes(buttons[i].innerHTML)) {
@@ -73,16 +71,13 @@ for (let i = 0; i < buttons.length; i++) {
                 secondnumber += buttons[i].innerHTML // check against adding operators to number string
             }
             currentnumber = secondnumber
-            console.log(secondnumber);
-            console.log(firstnumber); // incorrect assigning of first number
+            // incorrect assigning of first number
             operate(firstnumber, secondnumber, curoperator)
-            console.log(solution);
 
         }
         if (operator.includes(buttons[i].innerHTML) && clicked === 2) {
             savesolution = solution
             secondnumber = ''
-            console.log(solution);
         }
         if (!operator.includes(buttons[i].innerHTML) && clicked === 2 && !specialoperators.includes(buttons[i].innerHTML)) {
             firstnumber = solution
@@ -95,15 +90,10 @@ for (let i = 0; i < buttons.length; i++) {
             
             
             // want to keep chain of numbers until we want another operator
-            console.log(firstnumber);
-            console.log(secondnumber);
-            console.log(solution);
             
         }
         if (clicked === 3 && !specialoperators.includes(buttons[i].innerHTML)) {
             operate(firstnumber, secondnumber, curoperator)
-            console.log(firstnumber);
-            console.log(secondnumber);
             clicked = 0 
             secondnumber = ''
         }
@@ -111,7 +101,6 @@ for (let i = 0; i < buttons.length; i++) {
         switch (buttons[i].innerHTML) {
             case '=':
                 display.innerHTML = solution
-                console.log(solution);
                 break;
 
             case 'DEL':
@@ -119,7 +108,6 @@ for (let i = 0; i < buttons.length; i++) {
                 if (clicked === 0) {
                     // delete first number before the first operator
                     firstnumber = firstnumber.replace(firstnumber.substr(firstnumber.length - 1), '')
-                    console.log(firstnumber)
                 } else if (clicked === 1 && secondnumber === '') {
                     // with one operator and second number yet typed, delete the operator
                     curoperator = ''
@@ -127,13 +115,11 @@ for (let i = 0; i < buttons.length; i++) {
                 } else {
                     // else delete second number
                     secondnumber = secondnumber.replace(secondnumber.substr(secondnumber.length - 1), '')
-                    console.log(secondnumber)
                 }
                 break;
 
             case '%':
                 percent = currentnumber / 100
-                console.log(percent);
                 if (clicked === 0) {
                     firstnumber = percent;
                     display.innerHTML = firstnumber
